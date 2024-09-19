@@ -13,6 +13,6 @@ public class CreateArticleDto {
     @NotNull
     private String title;
     @NotNull
-    @Length(min = 1, max = 100)
+    @Length(min = 1, max = 1000)
     private String text;
 }
