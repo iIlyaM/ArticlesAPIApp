@@ -6,6 +6,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.antlr.v4.runtime.misc.NotNull;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -32,6 +33,8 @@ public class JwtAuthFilter extends OncePerRequestFilter {
     private final PrivilegeRepository privilegeRepository;
     private final HandlerExceptionResolver defaultHandlerExceptionResolver;
 
+    public static final int AUTH_HEADER_INDEX = 7;
+
     @Override
     protected void doFilterInternal(
             @NotNull HttpServletRequest request,
@@ -46,13 +49,13 @@ public class JwtAuthFilter extends OncePerRequestFilter {
                 filterChain.doFilter(request, response);
                 return;
             }
-            jwt = authHeader.substring(7);
+            jwt = authHeader.substring(AUTH_HEADER_INDEX);
             userEmail = jwtService.extractUsername(jwt);
             if (userEmail != null && SecurityContextHolder.getContext().getAuthentication() == null) {
                 UserDetails userDetails = this.userDetailsService.loadUserByUsername(userEmail);
                 if (jwtService.isTokenValid(jwt, userDetails)) {
                     if (!isValidPrivileges(userDetails, request)) {
-                        throw new InvalidPrivilegesException(403, "The user does not have enough privileges");
+                        throw new InvalidPrivilegesException(HttpStatus.FORBIDDEN.value(), "The user does not have enough privileges");
                     }
                     UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
                             userDetails,
