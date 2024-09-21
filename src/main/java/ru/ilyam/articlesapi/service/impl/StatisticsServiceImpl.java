@@ -19,17 +19,12 @@ public class StatisticsServiceImpl implements StatisticsService {
 
     @Override
     public DailyArticleCountResponse getArticlesCount() {
-        Map<LocalDateTime, Long> articleCountReportMap = new LinkedHashMap<>();
-        LocalDateTime endDate = LocalDateTime.now().with(LocalTime.MAX);
-
-        for (int i = 0; i < 7; i++) {
-            LocalDateTime startDate = endDate.with(LocalTime.MIN);
-            Long count = articleRepository.countPublishedArticlesBetweenDates(startDate, endDate);
-            articleCountReportMap.put(endDate, count);
-            endDate = startDate.minusSeconds(1);
+        LocalDateTime startDate = LocalDateTime.now().minusDays(6);
+        Map<LocalDateTime, Long> articlesCountMap = new LinkedHashMap<>();
+        for(var entry: articleRepository.getArticlesCountByCreateDate(startDate, LocalDateTime.now())) {
+            articlesCountMap.put(entry.getPublishDate(), entry.getArticleCount());
         }
-
-        return new DailyArticleCountResponse(articleCountReportMap);
+        return new DailyArticleCountResponse(articlesCountMap);
     }
 }
 

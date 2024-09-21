@@ -5,6 +5,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import ru.ilyam.articlesapi.dto.DailyArticleCountDto;
 import ru.ilyam.articlesapi.entity.Article;
 
 import java.time.LocalDate;
@@ -24,4 +25,10 @@ public interface ArticleRepository extends JpaRepository<Article, Long> {
     @Query("SELECT COUNT(a) FROM Article a WHERE a.createdAt >= :startDate AND a.createdAt <= :endDate")
     Long countPublishedArticlesBetweenDates(@Param("startDate") LocalDateTime startDate, @Param("endDate") LocalDateTime endDate);
 
+    @Query("SELECT new ru.ilyam.articlesapi.dto.DailyArticleCountDto(a.createdAt, COUNT(a)) FROM Article a " +
+            "WHERE a.createdAt >= :startDate AND a.createdAt <= :endDate " +
+            "GROUP BY a.createdAt " +
+            "ORDER BY a.createdAt DESC")
+    List<DailyArticleCountDto> getArticlesCountByCreateDate(@Param("startDate") LocalDateTime startDate,
+                                                            @Param("endDate") LocalDateTime endDate);
 }
