@@ -28,7 +28,7 @@ public interface ArticleRepository extends JpaRepository<Article, Long> {
     @Query("SELECT new ru.ilyam.articlesapi.dto.DailyArticleCountDto(a.createdAt, COUNT(a)) FROM Article a " +
             "WHERE a.createdAt >= :startDate AND a.createdAt <= :endDate " +
             "GROUP BY a.createdAt " +
-            "ORDER BY a.createdAt DESC")
+            "ORDER BY a.createdAt")
     List<DailyArticleCountDto> getArticlesCountByCreateDate(@Param("startDate") LocalDateTime startDate,
                                                             @Param("endDate") LocalDateTime endDate);
 }
