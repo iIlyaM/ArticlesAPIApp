@@ -1,0 +1,28 @@
+version: '3.9'
+
+volumes:
+  pg_users:
+
+services:
+  articles_api_db:
+    image: postgres
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_DB=articles_api_db
+    volumes:
+      - pg_users:/var/lib/postgresql/data
+    ports:
+      - "127.0.0.1:5435:5432"
+
+  articles_api_app:
+    restart: always
+    build: .
+    ports:
+      - "8081:8081"
+    depends_on:
+      - articles_api_db
+    environment:
+      SPRING_DATASOURCE_URL: 'jdbc:postgresql://articles_api_db:5432/articles_api_db'
+      SPRING_PROFILES_ACTIVE: local
