@@ -70,7 +70,7 @@
             <column name="title" type="VARCHAR(100)">
                 <constraints nullable="false" unique="true"/>
             </column>
-            <column name="text" type="VARCHAR(100)">
+            <column name="text" type="VARCHAR(1000)">
                 <constraints nullable="false"/>
             </column>
             <column name="created_at" type="TIMESTAMP" defaultValue="NOW()">
