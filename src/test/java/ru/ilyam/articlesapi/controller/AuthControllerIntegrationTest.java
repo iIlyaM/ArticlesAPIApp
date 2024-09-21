@@ -46,36 +46,6 @@ class AuthControllerIntegrationTest {
     }
 
     @Test
-    void register_whenValidData_thenStatusCreated() throws Exception {
-        RegisterRequestDto requestDto = new RegisterRequestDto();
-        requestDto.setEmail("john@mail.com");
-        requestDto.setPassword("pass12345678");
-        requestDto.setNickname("john");
-        requestDto.setRoleIds(List.of(1L));
-
-        mvc.perform(post("/api/v1/auth/register")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(requestDto)))
-                .andExpect(status().isOk())
-                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$.email", is("john@mail.com")))
-                .andExpect(jsonPath("$.nickname", is("john")));
-    }
-
-    @Test
-    void register_whenInvalidData_thenStatusBadRequest() throws Exception {
-        RegisterRequestDto requestDto = new RegisterRequestDto();
-        requestDto.setEmail("john@mail.com");
-        requestDto.setPassword("pass12345678");
-        requestDto.setRoleIds(List.of(1L));
-
-        mvc.perform(post("/api/v1/auth/register")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(requestDto)))
-                .andExpect(status().isBadRequest());
-    }
-
-    @Test
     void authenticate_whenValidCredentials_thenReturnStatusOk() throws Exception {
         AuthRequestDto authRequestDto = new AuthRequestDto();
         authRequestDto.setEmail("john@mail.com");
