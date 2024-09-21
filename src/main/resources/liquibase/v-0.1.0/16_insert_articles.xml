@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="insert:ARTICLES" author="ilyam">
+        <insert tableName="articles">
+            <column name="title" value="Space Exploration"/>
+            <column name="text" value="Exploring the universe."/>
+            <column name="created_at" value="NOW()"/>
+            <column name="updated_at" value="NOW()"/>
+            <column name="user_id" value="1"/>
+        </insert>
+        <insert tableName="articles">
+            <column name="title" value="Cooking Tips"/>
+            <column name="text" value="Easy recipes to try."/>
+            <column name="created_at" value="NOW()"/>
+            <column name="updated_at" value="NOW()"/>
+            <column name="user_id" value="2"/>
+        </insert>
+
+    </changeSet>
+</databaseChangeLog>
