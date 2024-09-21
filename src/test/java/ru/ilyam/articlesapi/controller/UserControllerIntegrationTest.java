@@ -79,35 +79,6 @@ class UserControllerIntegrationTest {
                 .andExpect(jsonPath("$.nickname", is("jooohn")));
     }
 
-    @Test
-    void createUser_whenCreateUser_thenReturnStatusCreated() throws Exception {
-        RegisterRequestDto requestDto = new RegisterRequestDto();
-        requestDto.setEmail("john@mail.com");
-        requestDto.setPassword("password123");
-        requestDto.setNickname("jooohn");
-        requestDto.setRoleIds(List.of(1L));
-
-        mvc.perform(post("/api/v1/user-management/users/user")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(requestDto)))
-                .andExpect(status().isCreated())
-                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$.email", is("john@mail.com")))
-                .andExpect(jsonPath("$.nickname", is("jooohn")));
-    }
-
-    @Test
-    void createUser_whenNotValidData_thenStatusBadRequest() throws Exception {
-        RegisterRequestDto requestDto = new RegisterRequestDto();
-        requestDto.setEmail("john@mail.com");
-        requestDto.setPassword("password123");
-        requestDto.setRoleIds(List.of(1L));
-
-        mvc.perform(post("/api/v1/user-management/users/user")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(requestDto)))
-                .andExpect(status().isBadRequest());
-    }
 
     @Test
     void deleteUser_whenUserExists_thenStatusNoContent() throws Exception {

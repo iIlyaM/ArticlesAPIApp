@@ -9,8 +9,6 @@ import ru.ilyam.articlesapi.entity.User;
 import java.util.List;
 
 public interface UserService {
-    UserResponseDto create(RegisterRequestDto user);
-
     Page<UserResponseDto> getAll(Pageable pageable);
 
     UserResponseDto findByEmail(String email);

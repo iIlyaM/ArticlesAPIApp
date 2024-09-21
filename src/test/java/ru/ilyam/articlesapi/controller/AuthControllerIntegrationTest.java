@@ -13,7 +13,7 @@ import ru.ilyam.articlesapi.ArticlesApiApplication;
 import ru.ilyam.articlesapi.dto.AuthRequestDto;
 import ru.ilyam.articlesapi.dto.RegisterRequestDto;
 import ru.ilyam.articlesapi.repository.UserRepository;
-import ru.ilyam.articlesapi.service.UserService;
+import ru.ilyam.articlesapi.service.RegisterService;
 
 import java.util.List;
 
@@ -35,7 +35,7 @@ class AuthControllerIntegrationTest {
     private ObjectMapper objectMapper;
 
     @Autowired
-    private UserService userService;
+    private RegisterService registerService;
 
     @Autowired
     private UserRepository userRepository;
@@ -51,7 +51,7 @@ class AuthControllerIntegrationTest {
         authRequestDto.setEmail("john@mail.com");
         authRequestDto.setPassword("pass12345678");
 
-        userService.create(new RegisterRequestDto(
+        registerService.register(new RegisterRequestDto(
                 "john@mail.com",
                 "pass12345678",
                 "john",

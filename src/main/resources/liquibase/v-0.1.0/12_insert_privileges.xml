@@ -7,72 +7,66 @@
     <changeSet id="insert:PRIVILEGES" author="ilyam">
         <insert tableName="privileges">
             <column name="id" value="1"/>
-            <column name="name" value="CREATE_USER"/>
-            <column name="endpoint" value="/api/v1/user-management/users/user"/>
-            <column name="method" value="POST"/>
-        </insert>
-        <insert tableName="privileges">
-            <column name="id" value="2"/>
             <column name="name" value="UPDATE_USER"/>
             <column name="endpoint" value="/api/v1/user-management/user/{id}"/>
             <column name="method" value="PUT"/>
         </insert>
         <insert tableName="privileges">
-            <column name="id" value="3"/>
+            <column name="id" value="2"/>
             <column name="name" value="DELETE_USER"/>
             <column name="endpoint" value="/api/v1/user-management/user/{id}"/>
             <column name="method" value="DELETE"/>
         </insert>
         <insert tableName="privileges">
-            <column name="id" value="4"/>
+            <column name="id" value="3"/>
             <column name="name" value="GET_USER"/>
             <column name="endpoint" value="/api/v1/user-management/user/{id}"/>
             <column name="method" value="GET"/>
         </insert>
         <insert tableName="privileges">
-            <column name="id" value="5"/>
+            <column name="id" value="4"/>
             <column name="name" value="GET_USERS"/>
             <column name="endpoint" value="/api/v1/user-management/users"/>
             <column name="method" value="GET"/>
         </insert>
         <insert tableName="privileges">
-            <column name="id" value="6"/>
+            <column name="id" value="5"/>
             <column name="name" value="POST_ARTICLE"/>
             <column name="endpoint" value="/api/v1/article-management/articles/article"/>
             <column name="method" value="POST"/>
         </insert>
         <insert tableName="privileges">
-            <column name="id" value="7"/>
+            <column name="id" value="6"/>
             <column name="name" value="GET_ARTICLES"/>
             <column name="endpoint" value="/api/v1/article-management/articles"/>
             <column name="method" value="GET"/>
         </insert>
         <insert tableName="privileges">
-            <column name="id" value="8"/>
+            <column name="id" value="7"/>
             <column name="name" value="GET_ARTICLE"/>
             <column name="endpoint" value="/api/v1/article-management/article/{id}"/>
             <column name="method" value="GET"/>
         </insert>
         <insert tableName="privileges">
-            <column name="id" value="9"/>
+            <column name="id" value="8"/>
             <column name="name" value="UPDATE_ARTICLE"/>
             <column name="endpoint" value="/api/v1/article-management/article/{id}"/>
             <column name="method" value="PATCH"/>
         </insert>
         <insert tableName="privileges">
-            <column name="id" value="10"/>
+            <column name="id" value="9"/>
             <column name="name" value="PATCH_ARTICLE"/>
             <column name="endpoint" value="/api/v1/article-management/article/{id}"/>
             <column name="method" value="PATCH"/>
         </insert>
         <insert tableName="privileges">
-            <column name="id" value="11"/>
+            <column name="id" value="10"/>
             <column name="name" value="GET_ARTICLES_BY_AUTHOR"/>
             <column name="endpoint" value="/api/v1/article-management/author/{id}/articles"/>
             <column name="method" value="GET"/>
         </insert>
         <insert tableName="privileges">
-            <column name="id" value="12"/>
+            <column name="id" value="11"/>
             <column name="name" value="GET_ARTICLE_COUNT_REPORT"/>
             <column name="endpoint" value="/api/v1/stats-management/articles/count"/>
             <column name="method" value="GET"/>

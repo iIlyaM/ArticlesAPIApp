@@ -49,15 +49,11 @@
             <column name="privilege_id" value="11"/>
             <column name="role_id" value="1"/>
         </insert>
-        <insert tableName="roles_privileges">
-            <column name="privilege_id" value="11"/>
-            <column name="role_id" value="1"/>
-        </insert>
-        <insert tableName="roles_privileges">
-            <column name="privilege_id" value="12"/>
-            <column name="role_id" value="1"/>
-        </insert>
 
+        <insert tableName="roles_privileges">
+            <column name="privilege_id" value="5"/>
+            <column name="role_id" value="2"/>
+        </insert>
         <insert tableName="roles_privileges">
             <column name="privilege_id" value="6"/>
             <column name="role_id" value="2"/>
@@ -76,10 +72,6 @@
         </insert>
         <insert tableName="roles_privileges">
             <column name="privilege_id" value="10"/>
-            <column name="role_id" value="2"/>
-        </insert>
-        <insert tableName="roles_privileges">
-            <column name="privilege_id" value="11"/>
             <column name="role_id" value="2"/>
         </insert>
     </changeSet>

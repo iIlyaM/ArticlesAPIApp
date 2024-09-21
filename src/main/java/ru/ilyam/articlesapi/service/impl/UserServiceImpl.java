@@ -27,19 +27,6 @@ public class UserServiceImpl implements UserService {
     private final PrivilegeRepository privilegeRepository;
     private final BCryptPasswordEncoder passwordEncoder;
     private final UserMapper userMapper;
-    private final JwtService jwtService;
-
-
-    @Override
-    @Transactional
-    public UserResponseDto create(RegisterRequestDto userCreateRequestDto) {
-        User user = userMapper.toEntity(userCreateRequestDto);
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        var userId = userRepository.save(user).getId();
-        roleRepository.saveUserRoles(userId, userCreateRequestDto.getRoleIds());
-        jwtService.generateToken(user);
-        return userMapper.toUserResponseDto(user);
-    }
 
     @Override
     public Page<UserResponseDto> getAll(Pageable pageable) {

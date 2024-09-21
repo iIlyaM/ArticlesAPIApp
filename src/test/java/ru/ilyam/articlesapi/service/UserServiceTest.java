@@ -77,20 +77,6 @@ class UserServiceTest {
         userResponseDto.setNickname(user.getNickname());
     }
 
-    @Test
-    void create_whenValidData_thenReturnsUserResponseDto() {
-        when(userMapper.toEntity(any(RegisterRequestDto.class))).thenReturn(user);
-        when(passwordEncoder.encode(user.getPassword())).thenReturn("encodedPassword");
-        when(userRepository.save(any(User.class))).thenReturn(user);
-        when(userMapper.toUserResponseDto(any(User.class))).thenReturn(userResponseDto);
-
-        UserResponseDto result = userService.create(registerRequestDto);
-
-        assertThat(result).isNotNull();
-        assertThat(result.getEmail()).isEqualTo("jim@mail.com");
-        verify(roleRepository).saveUserRoles(anyLong(), anyList());
-        verify(jwtService).generateToken(any(User.class));
-    }
 
     @Test
     void getAll_whenCalled_thenReturnsPageOfUsers() {

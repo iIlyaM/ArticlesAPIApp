@@ -32,13 +32,6 @@ public class UserController {
         return new ResponseEntity<>(userService.findById(id), HttpStatus.OK);
     }
 
-    @PostMapping("/users/user")
-    public ResponseEntity<UserResponseDto> createUser(
-           @Valid @RequestBody RegisterRequestDto registerRequestDto
-    ) {
-        return new ResponseEntity<>(userService.create(registerRequestDto), HttpStatus.CREATED);
-    }
-
     @DeleteMapping("/user/{id}")
     public ResponseEntity<HttpStatus> delete(@PathVariable("id") Long id) {
         userService.delete(id);
