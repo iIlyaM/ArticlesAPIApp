@@ -1,0 +1,6 @@
+DATABASE_URL:
+  jdbc:postgresql://localhost:5435/articles_api_db
+DATABASE_USER:
+  postgres
+DATABASE_PASSWORD:
+  admin
